@@ -15,34 +15,28 @@ public class CouponService {
     private final RedissonClient redissonClient;
     private final int EMPTY = 0;
 
-    public String CodeMaker(String menu, String code) 
-    	{
-        //return "Coupon:" + code + menu;
-    		return menu;
-    	}
+    public String CodeMaker(String menu, String code){
+    	//return "Coupon:" + code + menu;
+		return menu;
+	}
 
-    public void setCouponQuantity(String key, int quantity) 
-		{
+    public void setCouponQuantity(String key, int quantity){
     	redissonClient.getBucket(key).set(quantity);
-		}
+    }
 
-    public int availableCoupons(String key) 
-		{
-    	return (int) redissonClient.getBucket(key).get();
-		}
+    public int availableCoupons(String key){
+		return (int) redissonClient.getBucket(key).get();
+	}
     
-    public void decreaseCouponWithLock(final String key) 
-    	{
+    public void decreaseCouponWithLock(final String key){
         final String keyName = key + "_withLock";
         final RLock lock = redissonClient.getLock(keyName);
         final String threadName = Thread.currentThread().getName();
 
-        try 
-        		{
-            if (!lock.tryLock(1, 3, TimeUnit.SECONDS)) 
-            			{
-                return;
-            			}
+        try {
+            if (!lock.tryLock(1, 3, TimeUnit.SECONDS)){
+				return;
+			}
 
             final int quantity = availableCoupons(key);
             if (quantity <= EMPTY) 
@@ -53,20 +47,15 @@ public class CouponService {
 
             log.info("쿠폰 보유자: {} - 현재 잔여 커피쿠폰{} 수량 : {}개", threadName, keyName, quantity);
             setCouponQuantity(key, quantity - 1);
-        		}
-        
-        catch (InterruptedException e) 
-        		{
+        	}
+        catch (InterruptedException e){
             e.printStackTrace();
-        		} 
-        
-        finally 
-        		{
-            if (lock != null && lock.isLocked()) 
-            			{
+			} 
+        finally {
+            if (lock != null && lock.isLocked()){
                 lock.unlock();
-            			}
-        		}
+			}
+        }
     }
 
     public void decreaseCouponWithoutLock(final String key) 
