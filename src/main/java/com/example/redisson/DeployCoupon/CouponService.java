@@ -18,15 +18,15 @@ public class CouponService {
     public String CodeMaker(String menu, String code){
     	//return "Coupon:" + code + menu;
 		return menu;
-	}
+    }
 
     public void setCouponQuantity(String key, int quantity){
     	redissonClient.getBucket(key).set(quantity);
-	}
+    }
 
     public int availableCoupons(String key){
 		return (int) redissonClient.getBucket(key).get();
-	}
+    }
     
     public void decreaseCouponWithLock(final String key){
         final String keyName = key + "_withLock";
@@ -35,15 +35,14 @@ public class CouponService {
 
         try {
             if (!lock.tryLock(1, 3, TimeUnit.SECONDS)){
-				return;
-			}
+                return;
+            }
 
             final int quantity = availableCoupons(key);
-            if (quantity <= EMPTY) 
-            			{
+            if (quantity <= EMPTY){
                 log.info("쿠폰 미보유자: {} - 사용 가능한 커피쿠폰은 모두 소진 (수량 : {}개)", threadName, quantity);
                 return;
-            			}
+            }
 
             log.info("쿠폰 보유자: {} - 현재 잔여 커피쿠폰{} 수량 : {}개", threadName, keyName, quantity);
             setCouponQuantity(key, quantity - 1);
