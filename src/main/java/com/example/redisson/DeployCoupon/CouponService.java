@@ -22,7 +22,7 @@ public class CouponService {
 
     public void setCouponQuantity(String key, int quantity){
     	redissonClient.getBucket(key).set(quantity);
-    }
+	}
 
     public int availableCoupons(String key){
 		return (int) redissonClient.getBucket(key).get();
