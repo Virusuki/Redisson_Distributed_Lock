@@ -40,7 +40,7 @@ public class CouponService {
         final String threadName = Thread.currentThread().getName();
 
         try {
-        	usingLock = lock.tryLock(waitTime, leaseTime, TimeUnit.SECONDS);
+            usingLock = lock.tryLock(waitTime, leaseTime, TimeUnit.SECONDS);
             if (!usingLock) {
                 return;
             }
