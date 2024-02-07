@@ -60,7 +60,7 @@ public class CouponService {
                  lock.unlock();
             }
         }
-	}
+    }
     
     public void decreaseCouponWithoutLock(final String key) {
         final String keyName = key + "_withoutLock";
