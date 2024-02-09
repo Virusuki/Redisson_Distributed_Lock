@@ -47,11 +47,11 @@ public class CouponService {
 			
             final int quantity = availableCoupons(key);
             if (quantity <= Complete) {
-            	  log.info("쿠폰 미보유자: {} - 사용 가능한 커피쿠폰은 모두 소진 (수량 : {}개)", threadName, quantity);
+            	  log.info("{} - 사용 가능한 커피쿠폰은 모두 소진 (수량 : {}개)", threadName, quantity);
             	  return;
             }
             
-            log.info("쿠폰 보유자: {} - 현재 잔여 커피쿠폰{} 수량 : {}개", threadName, keyName, quantity);
+            log.info("쿠폰 발급 중: {} - 현재 잔여 커피쿠폰{} 수량 : {}개", threadName, keyName, quantity);
             setCouponQuantity(key, quantity - 1);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();       
@@ -68,11 +68,11 @@ public class CouponService {
         final int quantity = availableCoupons(key);
 
         if (quantity <= Complete) {
-            log.info("threadName : {} / 사용 가능한 커피쿠폰은 모두 소진 (수량 : {}개)", threadName, quantity);
+            log.info("{} / 사용 가능한 커피쿠폰은 모두 소진 (수량 : {}개)", threadName, quantity);
             return;
         }
 
-        log.info("threadName : {} / 현재 잔여 커피쿠폰{} 수량 : {}개", threadName, keyName, quantity);
+        log.info("쿠폰 발급 중: {} / 현재 잔여 커피쿠폰{} 수량 : {}개", threadName, keyName, quantity);
         setCouponQuantity(key, quantity - 1);
     }
 }
