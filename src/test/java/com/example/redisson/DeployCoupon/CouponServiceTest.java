@@ -72,7 +72,7 @@ public class CouponServiceTest {
     	@Override
         public void run() {
             try {
-    		    couponService.decreaseCouponWithLock(this.couponKey);
+                couponService.decreaseCouponWithLock(this.couponKey);
     	        countDownLatch.countDown();
     	        countDownLatch.await(); 		    
     	    
@@ -97,7 +97,7 @@ public class CouponServiceTest {
             try {
                 a.join();
             
-			} catch (Exception ex) {
+            } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         });
@@ -120,7 +120,7 @@ public class CouponServiceTest {
                 couponService.decreaseCouponWithoutLock(this.couponKey);
                 countDownLatch.countDown();	
             
-			} catch (Exception ex) {
+            } catch (Exception ex) {
                 exception = ex;
             }
         }
