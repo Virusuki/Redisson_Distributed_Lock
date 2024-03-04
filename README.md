@@ -17,3 +17,7 @@
 <img src="https://github.com/Virusuki/Redisson_Distributed_Lock/blob/main/img/%EB%B6%84%EC%82%B0%EB%9D%BD%EC%A0%81%EC%9A%A9_junit.PNG" width="900px" height="80px" title="px(픽셀) 크기 설정" alt="kubernetes mornitoring architecture"></img><br/>
 <img src="https://github.com/Virusuki/Redisson_Distributed_Lock/blob/main/img/%EB%B6%84%EC%82%B0%EB%9D%BD%EC%A0%81%EC%9A%A9.PNG" width="600px" height="550px" title="px(픽셀) 크기 설정" alt="kubernetes mornitoring architecture"></img><br/>
 
+
+##
+Publish:
+- https://s-core.co.kr/insight/view/redis%eb%a5%bc-%ed%99%9c%ec%9a%a9%ed%95%9c-%ec%95%88%ec%a0%84%ed%95%98%ea%b2%8c-%eb%8f%99%ec%8b%9c%ec%84%b1-%ec%9d%b4%ec%8a%88-%ec%a0%9c%ec%96%b4%ed%95%98%ea%b8%b0/
